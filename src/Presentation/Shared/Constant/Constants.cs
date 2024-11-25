@@ -10,6 +10,8 @@ namespace BlazorEcommerce.Shared.Constant
         public static string TestUserEmail => "randy@gamages.com";
         public static string TestUserName => "Randy";
         public static string TestUserRoleName => "User";
+        public static string IdentityDbSchema => "gx";
+        public static string PersistenceDbSchema => "gx";
     }
 
     public static class Messages

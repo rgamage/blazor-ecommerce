@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BlazorEcommerce.Shared.Constant;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace BlazorEcommerce.Server.Contexts
@@ -27,13 +28,16 @@ namespace BlazorEcommerce.Server.Contexts
 
         public DbSet<Image> Images { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Change the schema for tables
+            foreach (var entity in modelBuilder.Model.GetEntityTypes())
+            {
+                var ets = modelBuilder.Model.GetEntityTypes();
+                Console.WriteLine(ets.Count());
+                entity.SetSchema(Constants.PersistenceDbSchema);
+            }
+
             modelBuilder.Entity<CartItem>()
                 .HasKey(ci => new { ci.UserId, ci.ProductId, ci.ProductTypeId });
 
