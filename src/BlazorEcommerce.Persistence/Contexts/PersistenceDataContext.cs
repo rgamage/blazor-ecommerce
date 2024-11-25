@@ -7,7 +7,6 @@ namespace BlazorEcommerce.Server.Contexts
     {
         public PersistenceDataContext(DbContextOptions<PersistenceDataContext> options) : base(options)
         {
-
         }
         
         public DbSet<Product> Products { get; set; }

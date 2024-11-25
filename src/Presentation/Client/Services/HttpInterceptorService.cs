@@ -62,6 +62,11 @@ public class HttpInterceptorService
                     _navManager.NavigateTo("/unauthorized");
                     message = "User is not authorized";
                     break;
+                case HttpStatusCode.BadRequest:
+                    message = $"Bad request on {e.Request.RequestUri}";
+                    var requestUrl = Uri.EscapeDataString(e.Request?.RequestUri?.ToString() ?? string.Empty);
+                    _navManager.NavigateTo($"/400?requestUrl={requestUrl}");
+                    break;
                 default:
                     _navManager.NavigateTo("/500");
                     message = "Something went wrong, please contact Administrator";

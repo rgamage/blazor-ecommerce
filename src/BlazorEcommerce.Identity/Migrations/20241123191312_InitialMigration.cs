@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BlazorEcommerce.Identity.Migrations
 {
     /// <inheritdoc />
-    public partial class Identity_Initial_Migration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -168,16 +168,6 @@ namespace BlazorEcommerce.Identity.Migrations
                     { "cac43a6e-f7bb-4448-baaf-1add431ccbbf", null, "User", "USER" },
                     { "cbc43a8e-f7bb-4445-baaf-1add431ffbbf", null, "Admin", "ADMIN" }
                 });
-
-            migrationBuilder.InsertData(
-                table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "8e445865-a24d-4543-a6c6-9443d048cdb9", 0, "53e5558c-8443-471c-add5-facbbd4d290d", "admin@admin.com", true, "System", "Admin", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAIAAYagAAAAEPURuIpj7YvvBDIjSWUp3vIbMweVGDjd/51OTeO0W3jJxGY0DRWw6IaFj/uB7JqVzg==", null, false, "56c284bf-f2ab-4fa2-b7e9-710098cb62a0", false, "admin@admin.com" });
-
-            migrationBuilder.InsertData(
-                table: "AspNetUserRoles",
-                columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "cbc43a8e-f7bb-4445-baaf-1add431ffbbf", "8e445865-a24d-4543-a6c6-9443d048cdb9" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

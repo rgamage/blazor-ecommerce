@@ -4,9 +4,12 @@ namespace BlazorEcommerce.Shared.Constant
 {
     public static class Constants
     {
-        public static string AdminEmail => "admin@admin.com";
+        public static string AdminEmail => "sales@gamatronix.com";
         public static string AdminName => "Admin";
         public static string AdminRoleName => "Admin";
+        public static string TestUserEmail => "randy@gamages.com";
+        public static string TestUserName => "Randy";
+        public static string TestUserRoleName => "User";
     }
 
     public static class Messages
