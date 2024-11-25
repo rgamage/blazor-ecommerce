@@ -33,8 +33,6 @@ namespace BlazorEcommerce.Server.Contexts
             // Change the schema for tables
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {
-                var ets = modelBuilder.Model.GetEntityTypes();
-                Console.WriteLine(ets.Count());
                 entity.SetSchema(Constants.PersistenceDbSchema);
             }
 

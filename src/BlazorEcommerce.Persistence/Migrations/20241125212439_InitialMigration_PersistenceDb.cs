@@ -6,13 +6,17 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BlazorEcommerce.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Persistence_Initial_Migration : Migration
+    public partial class InitialMigration_PersistenceDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "gx");
+
             migrationBuilder.CreateTable(
                 name: "Addresses",
+                schema: "gx",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -39,6 +43,7 @@ namespace BlazorEcommerce.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "CartItems",
+                schema: "gx",
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -54,6 +59,7 @@ namespace BlazorEcommerce.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Categories",
+                schema: "gx",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -74,6 +80,7 @@ namespace BlazorEcommerce.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Orders",
+                schema: "gx",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -95,6 +102,7 @@ namespace BlazorEcommerce.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ProductTypes",
+                schema: "gx",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -108,6 +116,7 @@ namespace BlazorEcommerce.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Products",
+                schema: "gx",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -130,6 +139,7 @@ namespace BlazorEcommerce.Persistence.Migrations
                     table.ForeignKey(
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
+                        principalSchema: "gx",
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -137,6 +147,7 @@ namespace BlazorEcommerce.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Images",
+                schema: "gx",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -150,12 +161,14 @@ namespace BlazorEcommerce.Persistence.Migrations
                     table.ForeignKey(
                         name: "FK_Images_Products_ProductId",
                         column: x => x.ProductId,
+                        principalSchema: "gx",
                         principalTable: "Products",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "OrderItems",
+                schema: "gx",
                 columns: table => new
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false),
@@ -171,18 +184,21 @@ namespace BlazorEcommerce.Persistence.Migrations
                     table.ForeignKey(
                         name: "FK_OrderItems_Orders_OrderId",
                         column: x => x.OrderId,
+                        principalSchema: "gx",
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrderItems_ProductTypes_ProductTypeId",
                         column: x => x.ProductTypeId,
+                        principalSchema: "gx",
                         principalTable: "ProductTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrderItems_Products_ProductId",
                         column: x => x.ProductId,
+                        principalSchema: "gx",
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -190,6 +206,7 @@ namespace BlazorEcommerce.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ProductVariants",
+                schema: "gx",
                 columns: table => new
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false),
@@ -210,12 +227,14 @@ namespace BlazorEcommerce.Persistence.Migrations
                     table.ForeignKey(
                         name: "FK_ProductVariants_ProductTypes_ProductTypeId",
                         column: x => x.ProductTypeId,
+                        principalSchema: "gx",
                         principalTable: "ProductTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ProductVariants_Products_ProductId",
                         column: x => x.ProductId,
+                        principalSchema: "gx",
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -223,26 +242,31 @@ namespace BlazorEcommerce.Persistence.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Images_ProductId",
+                schema: "gx",
                 table: "Images",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_ProductId",
+                schema: "gx",
                 table: "OrderItems",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_ProductTypeId",
+                schema: "gx",
                 table: "OrderItems",
                 column: "ProductTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
+                schema: "gx",
                 table: "Products",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductVariants_ProductTypeId",
+                schema: "gx",
                 table: "ProductVariants",
                 column: "ProductTypeId");
         }
@@ -251,31 +275,40 @@ namespace BlazorEcommerce.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Addresses");
+                name: "Addresses",
+                schema: "gx");
 
             migrationBuilder.DropTable(
-                name: "CartItems");
+                name: "CartItems",
+                schema: "gx");
 
             migrationBuilder.DropTable(
-                name: "Images");
+                name: "Images",
+                schema: "gx");
 
             migrationBuilder.DropTable(
-                name: "OrderItems");
+                name: "OrderItems",
+                schema: "gx");
 
             migrationBuilder.DropTable(
-                name: "ProductVariants");
+                name: "ProductVariants",
+                schema: "gx");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "Orders",
+                schema: "gx");
 
             migrationBuilder.DropTable(
-                name: "ProductTypes");
+                name: "ProductTypes",
+                schema: "gx");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Products",
+                schema: "gx");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Categories",
+                schema: "gx");
         }
     }
 }

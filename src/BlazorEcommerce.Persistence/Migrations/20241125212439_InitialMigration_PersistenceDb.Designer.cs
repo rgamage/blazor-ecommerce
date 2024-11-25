@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorEcommerce.Persistence.Migrations
 {
     [DbContext(typeof(PersistenceDataContext))]
-    [Migration("20241125205059_ChangeSchema")]
-    partial class ChangeSchema
+    [Migration("20241125212439_InitialMigration_PersistenceDb")]
+    partial class InitialMigration_PersistenceDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

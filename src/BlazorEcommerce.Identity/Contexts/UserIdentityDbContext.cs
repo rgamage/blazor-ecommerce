@@ -19,12 +19,7 @@ public class UserIdentityDbContext : IdentityDbContext<ApplicationUser>
         // Change the schema for Identity tables
         foreach (var entity in builder.Model.GetEntityTypes())
         {
-            var ets = builder.Model.GetEntityTypes();
-            Console.WriteLine(ets.Count());
-            if (entity.GetTableName().StartsWith("AspNet"))
-            {
-                entity.SetSchema(Constants.IdentityDbSchema);
-            }
+            entity.SetSchema(Constants.IdentityDbSchema);
         }
 
         builder.ApplyConfigurationsFromAssembly(typeof(UserIdentityDbContext).Assembly);
